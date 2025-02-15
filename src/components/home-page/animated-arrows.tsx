@@ -16,6 +16,13 @@ const AnimatedArrows = () => {
           rotate: [0, 360],
           transition: { duration: 3, ease: "linear" },
         }}
+        whileTap={{ rotate: 360, transition: { duration: 5 } }}
+        drag
+        dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
+        whileDrag={{
+          rotate: 360,
+          transition: { duration: 0.5, repeat: Infinity },
+        }}
         className="absolute top-0"
       >
         <Image src={Arrow} alt="Arrow 1" width={50} height={50} />
@@ -30,6 +37,13 @@ const AnimatedArrows = () => {
           rotate: [0, 360],
           transition: { duration: 3, ease: "linear" },
         }}
+        whileTap={{ rotate: 360, transition: { duration: 5 } }}
+        drag
+        dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
+        whileDrag={{
+          rotate: 360,
+          transition: { duration: 0.5, repeat: Infinity },
+        }}
         className="absolute top-[40%]"
       >
         <Image src={Arrow} alt="Arrow 2" width={42} height={50} />
@@ -43,6 +57,13 @@ const AnimatedArrows = () => {
         whileHover={{
           rotate: [0, 360],
           transition: { duration: 3, ease: "linear" },
+        }}
+        whileTap={{ rotate: 360, transition: { duration: 5 } }}
+        drag
+        dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
+        whileDrag={{
+          rotate: 360,
+          transition: { duration: 0.5, repeat: Infinity },
         }}
         className="absolute top-[80%]"
       >

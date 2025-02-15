@@ -17,6 +17,8 @@ const AnimatedSkills = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 5 }}
         whileHover={{ scale: 1.1, rotate: 15 }}
+        drag
+        dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
         className="flex justify-between border-gray-100 bg-[#DED9D9] dark:bg-purple-200 shadow-lg rounded-full px-6 w-full border h-[74px] transition-all"
       >
         <Image src={ReactLogo} alt="React" width={40} height={40} />
@@ -30,6 +32,8 @@ const AnimatedSkills = () => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 5, delay: 0.2 }}
         whileHover={{ scale: 1.1, rotate: -17.52 }}
+        drag
+        dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
       >
         <div className="relative flex justify-between left-[50px] items-center gap-3 border-gray-100 bg-[#DED9D9] dark:bg-purple-200 shadow-lg rounded-full px-6 border rotate-[17.52deg] w-[80%] h-[74px] transition-all">
           <Image
@@ -48,6 +52,8 @@ const AnimatedSkills = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 5, delay: 0.4 }}
         whileHover={{ scale: 1.1, rotate: 15.25 }}
+        drag
+        dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
       >
         <div className="flex relative justify-between bottom-[15px] right-[15%] items-center border-gray-100 bg-[#DED9D9] dark:bg-purple-200 shadow-lg rounded-full px-6 py-3 border -rotate-[15.25deg] h-[74px] w-[115%] transition-all">
           <Image
