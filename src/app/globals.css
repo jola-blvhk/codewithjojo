@@ -1,21 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "tailwindcss/typography";
 
+/* Default Light Theme */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #3e3e3e;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark Theme */
+.dark {
+  --background: #2b2537;
+  --foreground: #ffffff;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), Helvetica, sans-serif;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+@layer components {
+  .maxWidthSection {
+    @apply max-w-[1400px] m-auto;
+  }
+
+  .paddingX {
+    @apply px-10;
+  }
+}
+
+.outlined-text {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff66b2;
+  text-shadow:
+    -2px -2px 0 #ff66b2,
+    2px -2px 0 #ff66b2,
+    -2px 2px 0 #ff66b2,
+    2px 2px 0 #ff66b2;
+}
+
+.outline-box {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff66b2;
+  border: 5px solid pink;
+  border-radius: 50%;
+  clip-path: polygon(
+    5% 20%,
+    15% 5%,
+    40% 0%,
+    70% 10%,
+    90% 30%,
+    95% 50%,
+    90% 70%,
+    70% 90%,
+    40% 100%,
+    10% 80%,
+    5% 60%
+  );
 }

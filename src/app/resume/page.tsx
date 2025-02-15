@@ -1,9 +1,6 @@
-"use client";
-
-import HeroSection from "@/components/home-page/hero-section";
+import React from "react";
 import { motion } from "framer-motion";
-
-export default function Home() {
+const page = () => {
   return (
     <motion.div
       initial={{
@@ -13,10 +10,8 @@ export default function Home() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1.8 }}
       className="min-h-screen   "
-    >
-      <section className="py-6 md:py-9">
-        <HeroSection />
-      </section>
-    </motion.div>
+    ></motion.div>
   );
-}
+};
+
+export default page;
