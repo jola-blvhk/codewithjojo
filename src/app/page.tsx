@@ -12,9 +12,9 @@ export default function Home() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.8 }}
-      className="min-h-screen   "
+      className="min-h-screen paddingX  "
     >
-      <section className="py-6 md:py-9">
+      <section className="maxWidthSection h-[1500px] pt-4 pb-6 md:py-9">
         <HeroSection />
       </section>
     </motion.div>

@@ -23,13 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
-      <body className={`px-4 sm:px-6 md:px-10 pt-6 md:pt-8 ${poppins.variable} antialiased`}>
+      <body className={` ${poppins.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <section className="maxWidthSection">
-            <Header />
-            {children}
-          </section>
+          <Header />
+          {children}
         </ThemeProvider>
       </body>
     </html>
