@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import HandDrawnText from "./hand-drawn-text";
 import AnimatedThemeToggle from "../animated-theme-toggle";
 
-const Header = () => {
+export default function Header() {
   const pathname = usePathname();
   const [dropNav, setDropNav] = useState(false);
 
@@ -122,6 +122,4 @@ const Header = () => {
       )}
     </header>
   );
-};
-
-export default Header;
+}

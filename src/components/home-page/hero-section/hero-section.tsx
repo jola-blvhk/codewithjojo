@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import GreenLight from "../../../public/assets/green-light.svg";
-import ProfilePicture from "../../../public/assets/profile-picture.png";
+import GreenLight from "../../../../public/assets/green-light.svg";
+import ProfilePicture from "../../../../public/assets/profile-picture.png";
 import AnimatedSkills from "./animated-skills";
 import AnimatedArrows from "./animated-arrows";
 
 const HeroSection = () => {
   return (
-    <div className="relative  lg:flex justify-between items-center">
+    <div className="relative pt-4 pb-6 md:py-9 lg:flex justify-between items-center">
       <div className="sm: w-full  lg:w-[95%] xl:w-[60%]">
         <div className=" pl-1.5 pr-2 pb-1 pt-1.5 w-fit  md:pl-3 md:pr-4 text-xs md:text-base  md:py-3  gap-1.5 md:gap-3 border border-gray-100 rounded-[40px] dark:bg-purple-200 flex items-center">
           <Image
@@ -18,7 +18,7 @@ const HeroSection = () => {
           <p>Open to work</p>
         </div>
 
-        <h1 className="font-bold mt-3 md:mt-4  text-3xl  sm:text-5xl  xl:text-6xl leading-[70px] sm:leading-[80px] lg:leading-[96px] ">
+        <h1 className="font-bold mt-3 md:mt-4  text-3xl  sm:text-4xl md:text-5xl xl:text-6xl leading-[70px] sm:leading-[80px] lg:leading-[96px] xl:leading-[96px] ">
           <Image
             src={ProfilePicture}
             alt="Jojo"
@@ -44,7 +44,7 @@ const HeroSection = () => {
         </button>
       </div>
 
-      <div className="  sm:mt-10 md:mt-16 relative right-12 sm:left-20 md:left-40  lg:left-0 lg:right-0 w-fit gap-8 flex scale-75 sm:scale-125  lg:scale-95 xl:scale-100 xl:relative xl:right-0 xl:left-0  items-center">
+      <div className="  sm:mt-10 md:mt-16 relative right-12 sm:left-20 md:left-40  lg:left-0 lg:right-0 w-fit gap-8 flex scale-75 sm:scale-100 md:scale-125  lg:scale-95 xl:scale-100 xl:relative xl:right-0 xl:left-0  items-center">
         <div className="relative top-6">
           <AnimatedArrows />
         </div>

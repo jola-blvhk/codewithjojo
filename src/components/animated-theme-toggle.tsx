@@ -13,7 +13,7 @@ const ThemeToggle: React.FC = () => {
   const toggleSfx = "/sounds/click.mp3";
 
   // Use sound hook
-  const [play] = useSound(toggleSfx, { volume: 3 });
+  const [play] = useSound(toggleSfx, { volume: 2 });
 
   useEffect(() => {
     setMounted(true);

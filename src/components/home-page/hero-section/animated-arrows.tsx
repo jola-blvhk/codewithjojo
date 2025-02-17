@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Arrow from "../../../public/assets/arrow.svg";
+import Arrow from "../../../../public/assets/arrow.svg";
 
 const AnimatedArrows = () => {
   return (

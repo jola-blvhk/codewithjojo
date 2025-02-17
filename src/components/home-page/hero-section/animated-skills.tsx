@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import ReactLogo from "../../../public/assets/skills/react.svg";
-import HTMLLogo from "../../../public/assets/skills/html.svg";
-import CSSLogo from "../../../public/assets/skills/css.svg";
-import PythonLogo from "../../../public/assets/skills/python.svg";
-import TypeScriptLogo from "../../../public/assets/skills/typescript.svg";
+import ReactLogo from "../../../../public/assets/skills/react.svg";
+import HTMLLogo from "../../../../public/assets/skills/html.svg";
+import CSSLogo from "../../../../public/assets/skills/css.svg";
+import PythonLogo from "../../../../public/assets/skills/python.svg";
+import TypeScriptLogo from "../../../../public/assets/skills/typescript.svg";
 
 const AnimatedSkills = () => {
     
