@@ -5,7 +5,7 @@ import ProjectSection from "@/components/home-page/projects-section/project";
 
 export default function Home() {
   return (
-    <section className="paddingX">
+    <section className="paddingX h-[1500px]">
       <section className="maxWidthSection ">
         <HeroSection />
         <ProjectSection />

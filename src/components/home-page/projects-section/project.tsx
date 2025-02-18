@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryFilter from "./category-filter";
+import SubCategoryFilter from "./sub-category-filter";
 
 const ProjectSection = () => {
   const handleCategoryChange = (category: string) => {
@@ -13,6 +14,12 @@ const ProjectSection = () => {
       <div className="mt-2 md:mt-4">
         <CategoryFilter
           categories={["All", "Web Applications", "Mobile Applications"]}
+          onSelectCategory={handleCategoryChange}
+        />
+      </div>
+      <div className="mt-4 md:mt-6 ">
+        <SubCategoryFilter
+          categories={["All", "Finance", "Artificial Intelligence", "E-commerce", "Health and Fitness"]}
           onSelectCategory={handleCategoryChange}
         />
       </div>
