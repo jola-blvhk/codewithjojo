@@ -1,0 +1,12 @@
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: repeat(3, auto);
+  }
+}

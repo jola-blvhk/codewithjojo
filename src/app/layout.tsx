@@ -3,13 +3,12 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "./provider";
 import React from "react";
-
 import Header from "@/components/header";
 import AnimatedWrapper from "@/components/animated-wrapper";
 
 const poppins = Poppins({
   variable: "--font-poppins",
-  subsets: ["latin-ext"],
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 

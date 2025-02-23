@@ -13,6 +13,8 @@ const HeroSection = () => {
           <Image
             src={GreenLight}
             alt="green-light"
+            width={20}
+            height={20}
             className="w-3 h-auto md:w-6  "
           />
           <p>Open to work</p>
@@ -21,6 +23,8 @@ const HeroSection = () => {
         <h1 className="font-bold mt-3 md:mt-4  text-3xl  sm:text-4xl md:text-5xl xl:text-6xl leading-[70px] sm:leading-[80px] lg:leading-[96px] xl:leading-[96px] ">
           <Image
             src={ProfilePicture}
+            width={50}
+            height={50}
             alt="Jojo"
             className="inline mr-5 sm:mr-7  md:mr-10 aspect-square w-[60px] sm:w-[90px] md:w-[120px] h-auto rounded-xl"
           />{" "}
