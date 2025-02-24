@@ -6,7 +6,7 @@ import SkillsSection from "@/components/home-page/skills-section/skills-section"
 
 export default function Home() {
   return (
-    <section className="paddingX h-[1500px]">
+    <section className="paddingX h-[7000px]">
       <section className="maxWidthSection ">
         <HeroSection />
         <ProjectSection />
