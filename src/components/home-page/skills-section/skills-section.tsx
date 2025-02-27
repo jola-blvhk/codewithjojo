@@ -44,7 +44,7 @@ const SkillsSection = () => {
         Skills and Technology
       </h1>
 
-      <div className="mt-4  sm:mt-8 md:mt-12 flex gap-2.5  sm:gap-4 md:gap-x-8 md:gap-y-7 justify-center m-auto w-[90%]  md:w-[80%] items-center flex-wrap">
+      <div className="mt-10 md:mt-16 flex gap-2.5  sm:gap-4 md:gap-x-8 md:gap-y-7 justify-center m-auto w-[90%]  md:w-[80%] items-center flex-wrap">
         {skills.map((skill, index) => {
           const skillImageUrl = skill.iconUrl
             ? urlFor(skill.iconUrl)?.width(40).height(40).url()
