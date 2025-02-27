@@ -120,22 +120,18 @@ const ProjectSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {filteredProjects.map((project, index) => {
               const projectImageUrl = project?.imageUrl
-                ? urlFor(project.imageUrl)?.width(500).height(400).url()
+                ? urlFor(project.imageUrl)?.width(750).height(380).url()
                 : null;
               return (
-                <div
+                <Image
                   key={index}
-                  className=" shadow-lg rounded-2xl"
-                >
-                  <Image
-                    src={projectImageUrl || "/assets/logo.png"}
-                    width={500}
-                    height={500}
-                    quality={100}
-                    alt={project.title}
-                    className="w-full h-80 object-cover py-3 rounded-2xl"
-                  />
-                </div>
+                  src={projectImageUrl || "/assets/logo.png"}
+                  width={500}
+                  height={500}
+                  quality={100}
+                  alt={project.title}
+                  className="w-full h-80 object-contain border-[0.5px] dark:border-purple-200 shadow-xl rounded-3xl"
+                />
               );
             })}
           </div>
