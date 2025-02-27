@@ -37,6 +37,7 @@ const HeroSection = () => {
             width={50}
             height={50}
             alt="Jojo"
+            quality={100}
             className="inline mr-5 sm:mr-7  md:mr-10 aspect-square w-[60px] sm:w-[90px] md:w-[120px] h-auto rounded-xl"
           />{" "}
           Hi, I&rsquo;m Oluremi !<br />

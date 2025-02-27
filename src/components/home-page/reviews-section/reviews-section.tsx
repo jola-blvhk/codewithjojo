@@ -72,7 +72,7 @@ const ReviewsSection = () => {
   });
 
   return (
-    <section className="my-10 md:my-16 lg:my-20 xl:my-32">
+    <section className="my-14 md:my-16 lg:my-20 xl:my-32">
       <h1 className="font-bold text-center text-3xl lg:text-5xl">
         See what <span className="text-pink-100">others</span> are saying
       </h1>

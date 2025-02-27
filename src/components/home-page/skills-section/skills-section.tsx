@@ -39,7 +39,7 @@ const SkillsSection = () => {
     fetchSkills();
   }, []);
   return (
-    <section className="mt-10 md:mt-16 lg:mt-20 xl:mt-32">
+    <section className="mt-14 md:mt-16 lg:mt-20 xl:mt-32">
       <h1 className="font-bold text-center text-3xl lg:text-5xl">
         Skills and Technology
       </h1>

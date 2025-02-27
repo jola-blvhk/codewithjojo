@@ -9,7 +9,7 @@ const Footer = () => {
   const date = new Date().getFullYear();
   return (
     <>
-      <section className="m-auto w-fit mt-20  mb-20 md:mb-32 ">
+      <section className="m-auto w-fit mt-16  mb-20 md:mb-32 ">
         <div className="flex items-center gap-[22px] ">
           <Image
             src={Logo}

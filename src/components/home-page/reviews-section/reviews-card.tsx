@@ -21,7 +21,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
 }) => {
  
   return (
-    <div className="relative px-7 py-8 md:py-10 mx-4 sm:mx-0  max-w-md rounded-lg ">
+    <div className="relative px-7 py-8 md:py-10   max-w-md rounded-lg ">
       {/* Curved Edges */}
       <div className="absolute top-0 left-0 w-10 h-10">
         <svg
