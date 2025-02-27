@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import GreenLight from "../../../../public/assets/green-light.svg";
 import GreenDark from "../../../../public/assets/green-dark.svg";
 import ProfilePicture from "../../../../public/assets/profile-picture.svg";
+import ProfilePicturePng from "../../../../public/assets/profile-picture.png";
 import AnimatedSkills from "./animated-skills";
 import AnimatedArrows from "./animated-arrows";
 import { useTheme } from "next-themes";
@@ -10,6 +11,17 @@ import { useTheme } from "next-themes";
 const HeroSection = () => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 640); // Adjust breakpoint as needed
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -33,7 +45,7 @@ const HeroSection = () => {
 
         <h1 className="font-bold mt-3 md:mt-4  text-3xl  sm:text-4xl md:text-5xl xl:text-6xl leading-[70px] sm:leading-[80px] lg:leading-[96px] xl:leading-[96px] ">
           <Image
-            src={ProfilePicture}
+            src={isSmallScreen ? ProfilePicturePng : ProfilePicture}
             width={50}
             height={50}
             alt="Jojo"

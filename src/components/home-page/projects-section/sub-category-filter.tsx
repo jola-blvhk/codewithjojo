@@ -30,7 +30,7 @@ const SubCategoryFilter: React.FC<SubCategoryFilterProps> = ({
       </button>
 
       {/* Category Buttons */}
-      <div className="flex gap-4 pl-4 items-center  overflow-scroll">
+      <div className="flex gap-4 pl-4 items-center  overflow-scroll scrollbar-hide">
         {categories.map((category) => (
           <button
             key={category}
