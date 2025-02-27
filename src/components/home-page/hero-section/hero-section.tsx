@@ -1,17 +1,28 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GreenLight from "../../../../public/assets/green-light.svg";
-import ProfilePicture from "../../../../public/assets/profile-picture.png";
+import GreenDark from "../../../../public/assets/green-dark.svg";
+import ProfilePicture from "../../../../public/assets/profile-picture.svg";
 import AnimatedSkills from "./animated-skills";
 import AnimatedArrows from "./animated-arrows";
+import { useTheme } from "next-themes";
 
 const HeroSection = () => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevents hydration issues
+  if (!mounted) return null;
   return (
     <div className="relative pt-4 pb-6 md:py-9 lg:flex justify-between items-center">
       <div className="sm: w-full  lg:w-[95%] xl:w-[60%]">
         <div className=" pl-1.5 pr-2 pb-1 pt-1.5 w-fit  md:pl-3 md:pr-4 text-xs md:text-base  md:py-3  gap-1.5 md:gap-3 border border-gray-100 rounded-[40px] dark:bg-purple-200 flex items-center">
           <Image
-            src={GreenLight}
+            src={theme === "dark" ? GreenDark : GreenLight}
             alt="green-light"
             width={20}
             height={20}

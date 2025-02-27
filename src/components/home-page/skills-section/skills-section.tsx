@@ -23,7 +23,7 @@ const SkillsSection = () => {
   const [skills, setSkills] = useState<SanityDocument[]>([]);
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    const fetchSkills = async () => {
       try {
         const data = await client.fetch<SanityDocument[]>(
           ALL_SKILLS_QUERY,
@@ -36,10 +36,10 @@ const SkillsSection = () => {
       }
     };
 
-    fetchProjects();
+    fetchSkills();
   }, []);
   return (
-    <section className="mt-10 md:mt-16 lg:mt-20">
+    <section className="mt-10 md:mt-16 lg:mt-20 xl:mt-32">
       <h1 className="font-bold text-center text-3xl lg:text-5xl">
         Skills and Technology
       </h1>

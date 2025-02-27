@@ -33,6 +33,7 @@ export default function RootLayout({
           <AnimatedWrapper>
             <Header />
             {children}
+            
           </AnimatedWrapper>
         </ThemeProvider>
       </body>

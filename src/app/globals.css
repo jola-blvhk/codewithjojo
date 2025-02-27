@@ -67,3 +67,7 @@ body {
     5% 60%
   );
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
