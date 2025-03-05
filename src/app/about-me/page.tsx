@@ -63,17 +63,18 @@ const AboutMe = () => {
               applications (like OpenAI&rsquo;s models) to process and display
               text incrementally for a smoother user experience.
               <br />
-              It&rsquo;s an app where users type a story prompt (e.g., &quot;A
-              spaceship lands in a medieval kingdom&quot;), and the AI generates
-              a story in real-time, streaming each paragraph as it’s created.
+              <strong>Jojo-AI</strong> is an app where users type a story prompt
+              (e.g., &quot;A spaceship lands in a medieval kingdom&quot;), and
+              the AI generates a story in real-time, streaming each paragraph as
+              it’s created.
             </p>
           </div>
 
           <div className="mt-6">
-            <h2 className="text-lg md:text-xl font-semibold">
+            <h2 className="text-base sm:text-lg md:text-xl font-semibold">
               What I Bring to the Table :
             </h2>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-2 md:mt-4 space-y-2">
               {[
                 "Pixel-perfect, responsive UI",
                 "Seamless user experiences",
