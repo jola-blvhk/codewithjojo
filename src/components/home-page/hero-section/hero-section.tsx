@@ -15,7 +15,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 640); // Adjust breakpoint as needed
+      setIsSmallScreen(window.innerWidth < 640); 
     };
 
     checkScreenSize();

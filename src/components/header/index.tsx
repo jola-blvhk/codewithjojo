@@ -18,7 +18,7 @@ export default function Header() {
   const navLinks = [
     { title: "Projects", link: "/" },
     { title: "About me", link: "/about-me" },
-    { title: "Resume", link: "/resume" },
+    { title: "Resume", link: "https://drive.google.com/file/d/1ijlC1vTCeC3n25S8leXm7IJcsM79PbRn/view?usp=sharing"},
   ];
 
   return (
