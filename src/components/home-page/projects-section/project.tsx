@@ -4,6 +4,7 @@ import SubCategoryFilter from "./sub-category-filter";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/client";
 import { SanityDocument } from "next-sanity";
+import Link from "next/link";
 import Image from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
@@ -12,6 +13,7 @@ const ALL_PROJECTS_QUERY = `*[_type == "project"] {
   tagline,
   description,
   "imageUrl": image.asset->url,
+  slug,
   category,
   subcategory
 }`;
@@ -57,6 +59,7 @@ const ProjectSection = () => {
           options
         );
         setProjects(data);
+        console.log(data);
         setFilteredProjects(data); // Show all initially
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -123,15 +126,16 @@ const ProjectSection = () => {
                 ? urlFor(project.imageUrl)?.width(750).height(380).url()
                 : null;
               return (
-                <Image
-                  key={index}
-                  src={projectImageUrl || "/assets/logo.png"}
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt={project.title}
-                  className="w-full h-80 object-contain border-[0.5px] dark:border-purple-200 shadow-xl rounded-3xl"
-                />
+                <Link key={index} href={`/project-details/${project.slug.current}`}>
+                  <Image
+                    src={projectImageUrl || "/assets/logo.png"}
+                    width={500}
+                    height={500}
+                    quality={100}
+                    alt={project.title}
+                    className="w-full h-80 object-contain border-[0.5px] dark:border-purple-200 shadow-xl rounded-3xl"
+                  />
+                </Link>
               );
             })}
           </div>

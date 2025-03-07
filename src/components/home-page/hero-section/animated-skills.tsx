@@ -20,7 +20,7 @@ const AnimatedSkills = () => {
         whileHover={{ scale: 1.1, rotate: 15 }}
         drag
         dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
-        className="flex justify-between border-gray-100 bg-[#FBFAFA] dark:bg-purple-200 shadow-lg rounded-full px-6 w-full border h-[74px] transition-all"
+        className="flex justify-between border-gray-100 bg-[#FBFAFA] dark:bg-purple-200 shadow-lg  rounded-full px-6 w-full border h-[74px] transition-all"
       >
         <Image src={ReactLogo} alt="React" width={40} height={40} />
         <Image src={HTMLLogo} alt="HTML" width={80} height={40} />
