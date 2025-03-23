@@ -7,6 +7,8 @@ import SmallProfilePicture from "../../../../public/assets/small-profile-picture
 import AnimatedSkills from "./animated-skills";
 import AnimatedArrows from "./animated-arrows";
 import { useTheme } from "next-themes";
+import { ReactTyped } from "react-typed";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const { theme } = useTheme();
@@ -15,7 +17,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 640); 
+      setIsSmallScreen(window.innerWidth < 640);
     };
 
     checkScreenSize();
@@ -56,20 +58,31 @@ const HeroSection = () => {
           <span className="text-gray-100">a</span>{" "}
           <span className="text-pink-100">Front-end Developer</span>
         </h1>
-        <p className="lg:w-[80%] sm:mt-3 leading-7 text-sm sm:text-base sm:leading-9   md:leading-9 lg:leading-10 lg:text-lg md:text-xl">
-          I craft visually appealing and user-friendly web experiences with
-          clean, efficient code. Passionate about turning ideas into
-          interactive, responsive, and accessible digital solutions.
+        <p className="lg:w-[80%] h-16  md:h-20 sm:mt-3 leading-7 text-sm sm:text-base sm:leading-9   md:leading-9 lg:leading-10 lg:text-lg md:text-xl">
+          <ReactTyped
+          
+            strings={[
+              "I craft visually appealing and user-friendly web experiences with clean, efficient code.",
+              "Passionate about turning ideas into interactive, responsive, and accessible digital solutions.",
+            ]}
+            typeSpeed={60} // Speed of typing
+            backSpeed={20} // Speed of deleting
+            loop={true} // Set to true if you want it to repeat
+            showCursor={false} // Hide blinking cursor
+          />
         </p>
 
-        <button
+        <motion.button
           onClick={() =>
             (window.location.href = "mailto:awujoolabello@gmail.com")
           }
-          className=" text-white mt-2 sm:mt-3 py-2 px-[22.3px]  sm:py-5 sm:px-12 rounded-[50px] text-sm md:text-base lg:text-lg bg-black"
+          className="text-white mt-2 sm:mt-3 py-2 px-[22.3px] sm:py-5 sm:px-12 rounded-[50px] text-sm md:text-base lg:text-lg bg-black transition-all duration-300 ease-in-out focus:outline-none"
+          whileHover={{ scale: 1.05, backgroundColor: "#1a1a1a" }} // Hover effect
+          whileTap={{ scale: 0.95 }} // Click effect (shrink)
+          whileFocus={{ boxShadow: "0 0 12px rgba(255,255,255,0.5)" }} // Focus ring effect
         >
           Send a mail
-        </button>
+        </motion.button>
       </div>
 
       <div className="  sm:mt-10 md:mt-16 relative right-12 sm:left-20 md:left-40  lg:left-0 lg:right-0 w-fit gap-8 flex scale-75 sm:scale-100 md:scale-125  lg:scale-95 xl:scale-100 xl:relative xl:right-0 xl:left-0  items-center">

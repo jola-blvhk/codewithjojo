@@ -7,6 +7,8 @@ import { SanityDocument } from "next-sanity";
 import Link from "next/link";
 import Image from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { motion } from "framer-motion";
+import useSound from "use-sound";
 
 const ALL_PROJECTS_QUERY = `*[_type == "project"] {
   title,
@@ -27,13 +29,11 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-/** Map UI categories to Sanity category names */
 const CATEGORY_MAP: Record<string, string> = {
   "Web Applications": "web",
   "Mobile Applications": "mobile",
 };
 
-/** Map UI subcategories to Sanity subcategory names */
 const SUBCATEGORY_MAP: Record<string, string> = {
   Health: "health",
   Games: "games",
@@ -46,9 +46,10 @@ const ProjectSection = () => {
   const [projects, setProjects] = useState<SanityDocument[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>("All");
-  const [filteredProjects, setFilteredProjects] = useState<SanityDocument[]>(
-    []
-  );
+  const [filteredProjects, setFilteredProjects] = useState<SanityDocument[]>([]);
+
+  const popSound = "/sounds/pop.mp3"; 
+  const [play] = useSound(popSound, { volume: 0.2 });
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -59,8 +60,7 @@ const ProjectSection = () => {
           options
         );
         setProjects(data);
-        console.log(data);
-        setFilteredProjects(data); // Show all initially
+        setFilteredProjects(data);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -72,18 +72,14 @@ const ProjectSection = () => {
   useEffect(() => {
     let filtered = projects;
 
-    /** Apply category filter */
     if (selectedCategory !== "All") {
       const categoryKey = CATEGORY_MAP[selectedCategory];
       filtered = filtered.filter((project) => project.category === categoryKey);
     }
 
-    /** Apply subcategory filter */
     if (selectedSubCategory !== "All") {
       const subCategoryKey = SUBCATEGORY_MAP[selectedSubCategory];
-      filtered = filtered.filter(
-        (project) => project.subcategory === subCategoryKey
-      );
+      filtered = filtered.filter((project) => project.subcategory === subCategoryKey);
     }
 
     setFilteredProjects(filtered);
@@ -93,7 +89,6 @@ const ProjectSection = () => {
     <section className="pt-4 sm:pt-14 md:pt-24 lg:pt-9">
       <h2 className="text-3xl font-bold">Projects</h2>
 
-      {/* Category Filter */}
       <div className="mt-2 md:mt-4">
         <CategoryFilter
           categories={["All", "Web Applications", "Mobile Applications"]}
@@ -101,17 +96,9 @@ const ProjectSection = () => {
         />
       </div>
 
-      {/* Subcategory Filter (only applies within the selected category) */}
       <div className="mt-4 md:mt-6">
         <SubCategoryFilter
-          categories={[
-            "All",
-            "Health",
-            "Games",
-            "E-commerce",
-            "News Feed",
-            "Portfolio",
-          ]}
+          categories={["All", "Health", "Games", "E-commerce", "News Feed", "Portfolio"]}
           onSelectCategory={setSelectedSubCategory}
         />
       </div>
@@ -125,16 +112,26 @@ const ProjectSection = () => {
               const projectImageUrl = project?.imageUrl
                 ? urlFor(project.imageUrl)?.width(750).height(380).url()
                 : null;
+
+              const tiltDirection = index % 2 === 0 ? 3 : -3; 
+
               return (
                 <Link key={index} href={`/project-details/${project.slug.current}`}>
-                  <Image
-                    src={projectImageUrl || "/assets/logo.png"}
-                    width={500}
-                    height={500}
-                    quality={100}
-                    alt={project.title}
-                    className="w-full h-80 object-contain border-[0.5px] dark:border-purple-200 shadow-xl rounded-3xl"
-                  />
+                  <motion.div
+                    whileHover={{ rotateZ: tiltDirection, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                    onMouseEnter={() => play()}
+                    className="cursor-pointer"
+                  >
+                    <Image
+                      src={projectImageUrl || "/assets/logo.png"}
+                      width={500}
+                      height={500}
+                      quality={100}
+                      alt={project.title}
+                      className="w-full h-auto shadow-2xl dark:shadow-purple-200 rounded-2xl border-[0.5px] dark:border-purple-200"
+                    />
+                  </motion.div>
                 </Link>
               );
             })}
