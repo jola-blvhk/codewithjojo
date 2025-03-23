@@ -7,7 +7,7 @@ import SmallProfilePicture from "../../../../public/assets/small-profile-picture
 import AnimatedSkills from "./animated-skills";
 import AnimatedArrows from "./animated-arrows";
 import { useTheme } from "next-themes";
-import { ReactTyped } from "react-typed";
+import {  ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
