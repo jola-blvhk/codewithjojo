@@ -7,8 +7,6 @@ import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import Slideshow from "./image-slideshow";
-import {ReactTyped} from "react-typed";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 const { projectId, dataset } = client.config();
@@ -17,9 +15,26 @@ const urlFor = (source: SanityImageSource) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
+    const SkeletonLoader = () => (
+      <section className="pt-10 sm:pt-16 paddingX mx-auto min-h-screen animate-pulse">
+        <section className="maxWidthSection">
+        <div className="w-full h-64 md:h-72 bg-gray-200 dark:bg-purple-200 rounded-xl">
+      
+        </div>
+        <h1 className="w-2/3 h-14 bg-gray-200 dark:bg-purple-200 rounded mt-8 mx-auto"></h1>
+        <p className="w-1/2 h-8 bg-gray-200 dark:bg-purple-200 rounded mt-4 mx-auto"></p>
+        <p className="w-3/4 h-24 bg-gray-200 dark:bg-purple-200 rounded mt-4 mx-auto"></p>
+        <div className="grid sm:flex justify-center gap-4 mt-6">
+          <div className="w-40 h-16 bg-gray-200 dark:bg-purple-200 rounded md:rounded-[50px]"></div>
+          <div className="w-40 h-16 bg-gray-200 dark:bg-purple-200 rounded md:rounded-[50px]"></div>
+        </div>
+        </section>
+      </section>
+    );
+
 export default function ProjectDetails({ slug }: { slug: string }) {
   const [details, setDetails] = useState<SanityDocument | null>(null);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -30,7 +45,7 @@ export default function ProjectDetails({ slug }: { slug: string }) {
 
       try {
         const project = await client.fetch<SanityDocument[]>(PROJECT_QUERY);
-        setDetails(project[0]); // Save project details
+        setDetails(project[0]);
       } catch (error) {
         console.error("Failed to fetch project details:", error);
       }
@@ -39,48 +54,22 @@ export default function ProjectDetails({ slug }: { slug: string }) {
     fetchProject();
   }, [slug]);
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-    };
-
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
 
   const imageUrls =
     details?.images?.map((img: any) =>
       urlFor(img)?.width(750).height(380).url()
     ) || [];
 
-  console.log(details);
+
   return (
     <>
-      {!details ? (
-        <p>Loading project data</p>
-      ) : (
         <section className="pt-10 sm:pt-16  mx-auto min-h-screen">
-          {isLargeScreen ? (
-            // Grid view for large screens
-            <div className="paddingX">
-              <div className="maxWidthSection grid grid-cols-3 gap-6">
-                {imageUrls.map((src: any, i: number) => (
-                  <Image
-                    src={src}
-                    key={i}
-                    alt={`Project Image ${i + 1}`}
-                    className="w-full h-auto rounded-xl drop-shadow-xl "
-                    width={500}
-                    height={300}
-                  />
-                ))}
-              </div>
-            </div>
-          ) : (
-            // Slideshow for smaller screens
+          {
+            !details ? <SkeletonLoader /> : (
+              <>
+        
             <Slideshow images={imageUrls} />
-          )}
+     
 
           <main className="paddingX">
             <section className="maxWidthSection">
@@ -105,15 +94,8 @@ export default function ProjectDetails({ slug }: { slug: string }) {
                 )}
               </p>
 
-                <p className="text-center m-auto lg:w-[80%] text-sm sm:text-base md:text-lg lg:text-xl xl-text-2xl mt-3 lg:mt-5 leading-6 sm:leading-8 md:leading-8 lg:leading-10 ">
-                  <ReactTyped 
-                  startWhenVisible={true}
-                  strings={[details.description]}
-                  typeSpeed={60}
-                  backSpeed={20}
-                  loop={false}
-                  showCursor={true} />
-                {/* {details.description} */}
+              <p className="text-center m-auto lg:w-[80%] text-sm sm:text-base md:text-lg lg:text-xl xl-text-2xl mt-3 lg:mt-5 leading-6 sm:leading-8 md:leading-8 lg:leading-10 ">
+                {details.description}
               </p>
               <div className="grid sm:flex gap-2 mt-5 sm:mt-6 justify-center items-center">
                 <a
@@ -154,9 +136,11 @@ export default function ProjectDetails({ slug }: { slug: string }) {
                 )}
               </div>
             </section>
-          </main>
+            </main>
+            </>
+             ) }
         </section>
-      )}
+       
     </>
   );
 }

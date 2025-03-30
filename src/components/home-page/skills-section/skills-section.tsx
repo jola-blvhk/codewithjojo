@@ -21,6 +21,7 @@ const options = { next: { revalidate: 30 } };
 
 const SkillsSection = () => {
   const [skills, setSkills] = useState<SanityDocument[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -33,39 +34,56 @@ const SkillsSection = () => {
         setSkills(data);
       } catch (error) {
         console.error("Error fetching skills:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSkills();
   }, []);
+
   return (
     <section className="mt-14 md:mt-16 lg:mt-20 xl:mt-32">
       <h1 className="font-bold text-center text-3xl lg:text-5xl">
         Skills and Technology
       </h1>
 
-      <div className="mt-10 md:mt-16 flex gap-2.5  sm:gap-4 md:gap-x-8 md:gap-y-7 justify-center m-auto w-[90%]  md:w-[80%] items-center flex-wrap">
-        {skills.map((skill, index) => {
-          const skillImageUrl = skill.iconUrl
-            ? urlFor(skill.iconUrl)?.width(40).height(40).url()
-            : null;
-          return (
-            <div
-              key={index}
-              className="flex items-center gap-1.5 sm:gap-4 py-1.5 px-2  sm:py-2 sm:px-6 border border-gray-100 rounded-[21.63px] md:rounded-[50px] text-sm sm:text-base lg:text-xl"
-            >
-              <Image
-                src={skillImageUrl ? skillImageUrl : ""}
-                width={48}
-                height={48}
-                className=" w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10"
-                alt={skill.name}
-              />
-              <p className="font-normal">{skill.name}</p>
-            </div>
-          );
-        })}
+      <div className="mt-10 md:mt-16 flex gap-2.5 sm:gap-4 md:gap-x-8 md:gap-y-7 justify-center m-auto w-[90%] md:w-[80%] items-center flex-wrap">
+        {loading
+          ? [...Array(8)].map((_, index) => (
+              <div
+                key={index}
+                className="animate-pulse flex items-center gap-1.5 sm:gap-4 py-1.5 px-2 sm:py-2 sm:px-6 border border-gray-100 rounded-[21.63px] md:rounded-[50px] text-sm sm:text-base lg:text-xl bg-gray-200 dark:bg-purple-200"
+              >
+                <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10 bg-gray-300 dark:bg-white  rounded-full"></div>
+                <div className="w-16 h-4 bg-gray-300 dark:bg-white rounded"></div>
+              </div>
+            ))
+          : skills.map((skill, index) => {
+              const skillImageUrl = skill.iconUrl
+                ? urlFor(skill.iconUrl)?.width(40).height(40).url()
+                : null;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-1.5 sm:gap-4 py-1.5 px-2 sm:py-2 sm:px-6 border border-gray-100 rounded-[21.63px] md:rounded-[50px] text-sm sm:text-base lg:text-xl"
+                >
+                  <Image
+                    src={skillImageUrl ? skillImageUrl : ""}
+                    width={48}
+                    height={48}
+                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10"
+                    alt={skill.name}
+                  />
+                  <p className="font-normal">{skill.name}</p>
+                </div>
+              );
+          })}
+       
+
       </div>
+
+      
     </section>
   );
 };

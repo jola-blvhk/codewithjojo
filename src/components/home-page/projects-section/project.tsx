@@ -9,6 +9,8 @@ import Image from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { motion } from "framer-motion";
 import useSound from "use-sound";
+import Lottie from "lottie-react";
+import emptyAnimation from "../../../../public/lottie/pink-girl-empty.json";
 
 const ALL_PROJECTS_QUERY = `*[_type == "project"] {
   title,
@@ -46,9 +48,12 @@ const ProjectSection = () => {
   const [projects, setProjects] = useState<SanityDocument[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>("All");
-  const [filteredProjects, setFilteredProjects] = useState<SanityDocument[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<SanityDocument[]>(
+    []
+  );
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const popSound = "/sounds/pop.mp3"; 
+  const popSound = "/sounds/pop.mp3";
   const [play] = useSound(popSound, { volume: 0.2 });
 
   useEffect(() => {
@@ -63,6 +68,8 @@ const ProjectSection = () => {
         setFilteredProjects(data);
       } catch (error) {
         console.error("Error fetching projects:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -79,7 +86,9 @@ const ProjectSection = () => {
 
     if (selectedSubCategory !== "All") {
       const subCategoryKey = SUBCATEGORY_MAP[selectedSubCategory];
-      filtered = filtered.filter((project) => project.subcategory === subCategoryKey);
+      filtered = filtered.filter(
+        (project) => project.subcategory === subCategoryKey
+      );
     }
 
     setFilteredProjects(filtered);
@@ -98,14 +107,43 @@ const ProjectSection = () => {
 
       <div className="mt-4 md:mt-6">
         <SubCategoryFilter
-          categories={["All", "Health", "Games", "E-commerce", "News Feed", "Portfolio"]}
+          categories={[
+            "All",
+            "Health",
+            "Games",
+            "E-commerce",
+            "News Feed",
+            "Portfolio",
+          ]}
           onSelectCategory={setSelectedSubCategory}
         />
       </div>
 
       <div className="mt-6 md:mt-8">
-        {filteredProjects.length === 0 ? (
-          <p>No projects found.</p>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            {[...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className="animate-pulse bg-gray-200 shadow-md dark:bg-purple-200 rounded-2xl h-72 w-full"
+              ></div>
+            ))}
+          </div>
+        ) : filteredProjects.length === 0 ? (
+          <div className="flex flex-col items-center justify-center mt-10">
+            <Lottie animationData={emptyAnimation} className="w-72 h-72" />
+            <p className="text-sm md:text-lg font-semibold mt-4 text-gray-600 dark:text-gray-300 text-center">
+              Oopsies, I have no{" "}
+              {selectedCategory !== "All"
+                ? selectedCategory.toLowerCase()
+                : "web or mobile"}{" "}
+              in{" "}
+              {selectedSubCategory !== "All"
+                ? selectedSubCategory.toLowerCase()
+                : "any category"}{" "}
+              right now. Check back in a month! 
+            </p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {filteredProjects.map((project, index) => {
@@ -113,10 +151,13 @@ const ProjectSection = () => {
                 ? urlFor(project.imageUrl)?.width(750).height(380).url()
                 : null;
 
-              const tiltDirection = index % 2 === 0 ? 3 : -3; 
+              const tiltDirection = index % 2 === 0 ? 3 : -3;
 
               return (
-                <Link key={index} href={`/project-details/${project.slug.current}`}>
+                <Link
+                  key={index}
+                  href={`/project-details/${project.slug.current}`}
+                >
                   <motion.div
                     whileHover={{ rotateZ: tiltDirection, scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300, damping: 10 }}

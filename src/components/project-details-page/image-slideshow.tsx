@@ -11,14 +11,14 @@ const Slideshow = ({ images }: { images: string[] }) => {
 
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [images]);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto flex items-center justify-center overflow-hidden">
-      <div className="relative flex w-full h-[250px] sm:h-[300px] items-center justify-center">
+    <div className="relative w-full  mx-auto flex items-center justify-center overflow-hidden">
+      <div className="relative flex w-full h-[250px] sm:h-[300px] md:h-[350px] items-center justify-center">
         {images.map((src, i) => {
           // Determine the position in the loop
           const prev = (index - 1 + images.length) % images.length;
@@ -39,7 +39,7 @@ const Slideshow = ({ images }: { images: string[] }) => {
               key={i}
               src={src}
               alt={`Slide ${i + 1}`}
-              className="absolute w-[80%] sm:w-[85%] lg:w-[60%] max-w-lg rounded-xl shadow-lg"
+              className="absolute w-[80%] sm:w-[85%] lg:w-[60%] max-w-[600px] rounded-xl shadow-lg"
               style={{ transform: "translateX(-50%)" }}
               initial={{ opacity: 1, scale: 1 }}
               animate={{

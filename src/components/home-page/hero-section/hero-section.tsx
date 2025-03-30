@@ -7,7 +7,6 @@ import SmallProfilePicture from "../../../../public/assets/small-profile-picture
 import AnimatedSkills from "./animated-skills";
 import AnimatedArrows from "./animated-arrows";
 import { useTheme } from "next-themes";
-import {  ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -58,18 +57,10 @@ const HeroSection = () => {
           <span className="text-gray-100">a</span>{" "}
           <span className="text-pink-100">Front-end Developer</span>
         </h1>
-        <p className="lg:w-[80%] h-16  md:h-20 sm:mt-3 leading-7 text-sm sm:text-base sm:leading-9   md:leading-9 lg:leading-10 lg:text-lg md:text-xl">
-          <ReactTyped
-          
-            strings={[
-              "I craft visually appealing and user-friendly web experiences with clean, efficient code.",
-              "Passionate about turning ideas into interactive, responsive, and accessible digital solutions.",
-            ]}
-            typeSpeed={60} // Speed of typing
-            backSpeed={20} // Speed of deleting
-            loop={true} // Set to true if you want it to repeat
-            showCursor={false} // Hide blinking cursor
-          />
+        <p className="lg:w-[80%] sm:mt-3 leading-7 text-sm sm:text-base sm:leading-9   md:leading-9 lg:leading-10 lg:text-lg md:text-xl">
+          I craft visually appealing and user-friendly web experiences with
+          clean, efficient code. Passionate about turning ideas into
+          interactive, responsive, and accessible digital solutions.
         </p>
 
         <motion.button
