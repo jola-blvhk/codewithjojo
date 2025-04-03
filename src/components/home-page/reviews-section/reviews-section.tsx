@@ -35,41 +35,47 @@ const ReviewsSection = () => {
           {},
           options
         );
-
         setReviews(data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
     };
-
     fetchReviews();
   }, []);
 
   // Keen slider setup
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: 3,
-      spacing: 45,
-    },
-    mode: "snap",
-    breakpoints: {
-      "(max-width: 1200px)": {
-        slides: { perView: 2, spacing: 15 },
+  const [sliderRef, instanceRef] = useKeenSlider(
+    {
+      loop: true,
+      slides: {
+        perView: 3,
+        spacing: 45,
       },
-      "(max-width: 768px)": {
-        slides: { perView: 1, spacing: 10 },
+      mode: "free", // Change 'snap' to 'free' to allow scrolling
+      breakpoints: {
+        "(max-width: 1200px)": {
+          slides: { perView: 2, spacing: 15 },
+        },
+        "(max-width: 768px)": {
+          slides: { perView: 1, spacing: 10 },
+        },
+      },
+      created(s) {
+        s.moveToIdx(1, true); // Optional: move to second slide initially
+      },
+      animationEnded(s) {
+        setTimeout(() => s.next(), 5000);
       },
     },
-    created(s) {
-      s.moveToIdx(1, true);
-    },
-    animationEnded(s) {
-      setTimeout(() => {
-        s.next();
-      }, 5000);
-    },
-  });
+    []
+  );
+
+  // Ensure re-render on screen resize
+  useEffect(() => {
+    if (instanceRef.current) {
+      instanceRef.current.update();
+    }
+  }, [reviews]);
 
   return (
     <section className="my-14 md:my-16 lg:my-20 xl:my-32">
