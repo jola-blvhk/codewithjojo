@@ -75,7 +75,7 @@ const ReviewsSection = () => {
     if (instanceRef.current) {
       instanceRef.current.update();
     }
-  }, [reviews]);
+  }, [instanceRef, reviews]);
 
   return (
     <section className="my-14 md:my-16 lg:my-20 xl:my-32">
